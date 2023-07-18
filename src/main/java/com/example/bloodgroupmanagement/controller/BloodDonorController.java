@@ -7,6 +7,7 @@ import com.example.bloodgroupmanagement.service.BloodDonorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -28,5 +29,9 @@ public class BloodDonorController {
     @GetMapping("/listofAvailableDonor")
     public List<BloodDonor> getAllAvailableDonor(){
         return bloodDonorService.getAllAvailableDonor();
+    }
+    @GetMapping("/{bloodGroup}/{TodaysDate}")
+    public List<BloodDonor> getByBloodGroupAndTodaysDate(@PathVariable String bloodGroup,@PathVariable LocalDate TodaysDate){
+        return bloodDonorService.getByBloodGroupAndTodaysDate(bloodGroup,TodaysDate);
     }
 }

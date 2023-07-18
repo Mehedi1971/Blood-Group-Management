@@ -5,11 +5,13 @@ import com.example.bloodgroupmanagement.enums.ActiveStatus;
 import com.example.bloodgroupmanagement.model.BloodDonor;
 import com.example.bloodgroupmanagement.repository.BloodDonorRepository;
 import com.example.bloodgroupmanagement.service.BloodDonorService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,6 +43,12 @@ public class BloodServiceDonorServiceImpl implements BloodDonorService {
     public List<BloodDonor> getAllAvailableDonor() {
         LocalDate thb=LocalDate.now().minusMonths(3);
         return bloodDonorRepository.findAllByLastDonatedBeforeAndActiveStatus(thb, ActiveStatus.ACTIVE.getValue());
+    }
+
+    @Override
+    public List<BloodDonor> getByBloodGroupAndTodaysDate(String bloodGroup, LocalDate TodaysDate) {
+        LocalDate threemonthsbefore= TodaysDate.minusMonths(3);
+        return bloodDonorRepository.findAllByBloodGroupAndLastDonatedBeforeAndActiveStatus(bloodGroup,threemonthsbefore,ActiveStatus.ACTIVE.getValue());
     }
 
 

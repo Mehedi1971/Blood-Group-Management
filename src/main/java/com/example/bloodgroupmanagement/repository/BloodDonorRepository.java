@@ -12,4 +12,8 @@ public interface BloodDonorRepository extends JpaRepository<BloodDonor, Long> {
     List<BloodDonor> findAllByActiveStatus(int status);
 
     List<BloodDonor>findAllByLastDonatedBeforeAndActiveStatus(LocalDate startDate,int status);
+
+    List<BloodDonor>findAllByBloodGroupAndActiveStatus(String bloodgroups,int status);
+
+    List<BloodDonor>findAllByBloodGroupAndLastDonatedBeforeAndActiveStatus(String bloodGroup, LocalDate TodaysDate, int status);
 }
