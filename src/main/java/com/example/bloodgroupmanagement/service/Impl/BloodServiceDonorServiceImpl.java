@@ -39,8 +39,8 @@ public class BloodServiceDonorServiceImpl implements BloodDonorService {
 
     @Override
     public List<BloodDonor> getAllAvailableDonor() {
-        LocalDate thb=LocalDate.now().minusMonths(3);
-        return bloodDonorRepository.findAllByLastDonatedBeforeAndActiveStatus(thb, ActiveStatus.ACTIVE.getValue());
+        LocalDate threeMonthsBefore=LocalDate.now().minusMonths(3);
+        return bloodDonorRepository.findAllByLastDonatedBeforeAndActiveStatus(threeMonthsBefore, ActiveStatus.ACTIVE.getValue());
     }
 
 
