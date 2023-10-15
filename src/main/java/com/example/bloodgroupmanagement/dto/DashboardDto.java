@@ -14,4 +14,5 @@ public class DashboardDto {
     private long totalABNegative;
     private long totalOPositive;
     private long totalONegative;
+    private long fieldCount;
 }

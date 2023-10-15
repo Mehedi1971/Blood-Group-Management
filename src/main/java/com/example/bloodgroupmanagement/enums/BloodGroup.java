@@ -1,5 +1,8 @@
 package com.example.bloodgroupmanagement.enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum BloodGroup {
     A_POSITIVE("A Positive"),
     A_NEGATIVE("A Negative"),
@@ -18,5 +21,13 @@ public enum BloodGroup {
 
     public String getValue() {
         return value;
+    }
+
+    public static List<String> getAllValues() {
+        List<String> valuesList = new ArrayList<>();
+        for (BloodGroup bloodGroup : values()) {
+            valuesList.add(bloodGroup.getValue());
+        }
+        return valuesList;
     }
 }

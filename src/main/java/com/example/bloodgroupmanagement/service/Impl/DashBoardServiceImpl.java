@@ -6,6 +6,7 @@ import com.example.bloodgroupmanagement.enums.BloodGroup;
 import com.example.bloodgroupmanagement.repository.BloodDonorRepository;
 import com.example.bloodgroupmanagement.repository.MedicalHistoryRepository;
 import com.example.bloodgroupmanagement.service.DashBoardService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,8 @@ public class DashBoardServiceImpl implements DashBoardService {
                 .stream()
                 .filter(bloodDonor -> (!bloodDonor.getMedicalHistory().getAllergies() && bloodDonor.getMedicalHistory().getActiveStatus() == (ActiveStatus.ACTIVE.getValue())))
                 .count());
+
+        List<String> bloodGroupValues = BloodGroup.getAllValues();
 
         dashboardDto.setTotalAPositive(bloodDonorRepository.findAllByBloodGroupAndActiveStatus(BloodGroup.A_POSITIVE.getValue(), ActiveStatus.ACTIVE.getValue()).size());
         dashboardDto.setTotalANegative(bloodDonorRepository.findAllByBloodGroupAndActiveStatus(BloodGroup.A_NEGATIVE.getValue(), ActiveStatus.ACTIVE.getValue()).size());
